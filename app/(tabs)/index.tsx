@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, TextInput } from 'react-native'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { decrement, increment, incrementByAmount } from '../redux/features/counterSlice'
+import { decrement, increment, incrementByAmount } from '../../redux/features/counterSlice'
 
 const index = () => {
   const counter = useSelector((state: any) => state.counter.value)

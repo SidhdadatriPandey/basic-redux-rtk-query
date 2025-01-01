@@ -1,6 +1,7 @@
 import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { useGetWeatherByCityQuery } from '../redux/weatherApi'
+import { useGetWeatherByCityQuery } from '../../redux/weatherApi'
+import { useAdsQuery } from '@/redux/pokimon'
 
 const rtk = () => {
   const [city, setCity] = useState<string>('Indore')
@@ -9,7 +10,17 @@ const rtk = () => {
   // const {data,isError,isSuccess,error} = useGetWeatherByCityQuery(currentCity); //if we don't want to skip api call
   const { data, isLoading, isSuccess, isError, error } = useGetWeatherByCityQuery(currentCity, { skip: skip })
   // console.log(JSON.stringify(data));
+  const {data:adsData,error:adsError,isSuccess:adsIsSuccess,isError:adsIsError}=useAdsQuery(9)
+  console.log('ads',adsData);
 
+  useEffect(() => {
+    if (adsIsSuccess) {
+      // here we can do actions which we want to perform after success
+    } else {
+      // here we can do actions which we want to perform after error or failure
+    }
+  }, [adsIsSuccess, adsIsError])
+  
   useEffect(() => {
     if (isSuccess) {
       // here we can do actions which we want to perform after success
